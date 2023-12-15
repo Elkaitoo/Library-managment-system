@@ -4,16 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Online Library</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="./CSS/styles.css">
     <!-- Include any additional CSS files here -->
 </head>
 <body>
     <div class="container">
         <div class="Navbar">
                 <ul>
-                    <li><a href="login.html">LOGIN</a></li>
-                    <li><a href="registration.html">REGISTER</a></li>
-                    <li><a href="browse.html">VIEW BOOKS</a></li>
+                    <li><a href="login.php">LOGIN</a></li>
+                    <li><a href="registration.php">REGISTER</a></li>
+                    <li><a href="browse.php">VIEW BOOKS</a></li>
                 </ul>     
         </div>
       

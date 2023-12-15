@@ -1,6 +1,6 @@
 @font-face {
     font-family: myFont;
-    src: url(DejaVuSans.ttf);
+    src: url('../Fonts/DejaVuSans.ttf');
 }
 
 * {
@@ -10,9 +10,9 @@
 }
 @media (max-width: 768px) {
     body {
-    background: url('Images/Home_Tablet.png') no-repeat center center fixed;
+    background: url('../Images/Home_Tablet.png') no-repeat center center fixed;
     background-size: cover;
-    
+    height: 100%;
     }
     
     /* Additional tablet-specific styles here */
@@ -21,9 +21,9 @@
     /* Media query for mobile devices */
     @media (max-width: 480px) {
     body {
-    background: url('Images/Home_Mob.png') no-repeat center center fixed;
+    background: url('../Images/Home_Mob.png') no-repeat center  fixed;
     background-size: cover;
-    
+    height: 100%;
     }
 }
 
