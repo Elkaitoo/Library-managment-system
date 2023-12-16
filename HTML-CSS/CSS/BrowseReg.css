@@ -1,0 +1,170 @@
+@font-face {
+    font-family: myFont2;
+    src: url('../Fonts/Montserrat-VariableFont_wght.ttf');
+}
+*{
+
+    font-family: myFont2;
+}
+body {
+    
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: url('../Images/Browse_Desk.png') no-repeat center center fixed
+}
+
+.book-list-container {
+    width: 80%;
+    margin: auto;
+    padding: 20px;
+    background-color: hsla(22, 62%, 41%, 0.527);;
+}
+h1{
+
+    color: #face8c;
+}
+
+.page-title {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.home-button-container {
+    text-align: left;
+    margin-top: 10px;
+}
+
+.home-button {
+    display: inline-block;
+    padding: 10px 15px;
+    background-color: #411a00;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.home-button:hover {
+    background-color: #632700;
+    transition: background-color 0.3s;
+}
+
+.search-form {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.search-form input[type="text"] {
+    padding: 10px;
+    margin-right: 5px;
+    width: 300px;
+    border: 2px solid #411a00;
+    border-radius: 4px;
+    background-color: #ee7c31;
+
+}
+
+.search-form button {
+    padding: 10px 15px;
+    border: none;
+    background-color: #411a00;
+    color: rgb(255, 255, 255);
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.search-form button:hover {
+    background-color: #632700;
+    transition: background-color 0.3s;
+}
+
+.book-item {
+    border: 1px solid #411a00;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    background-color: #b35c22;
+    position: relative;
+    box-shadow: 5px 2px 15px rgb(12, 12, 12);
+    display: flex;
+}
+.book-image-container {
+    width: 75px; /* Adjust as needed */
+    height: 100px; /* Adjust as needed */
+    overflow: hidden;
+    margin-right: 15px;
+}
+.book-image {
+    width: 100%;
+    height: auto;
+}
+.book-info {
+    flex-grow: 1;
+    position: relative;
+}
+
+.borrow-form {
+    margin-top: 5px; /* Spacing from the book info */
+    text-align: right; /* Aligns the form content to the right */
+    padding: 5px;
+}
+
+.borrow-form select {
+    padding: 5px 10px;
+    margin-right: 10px; /* Space between the dropdown and the button */
+    border: 1px solid #411a00;
+    border-radius: 4px;
+    background-color: rgb(224, 113, 22);
+}
+
+
+
+.borrow-form input[type="submit"] {
+    padding: 5px 15px;
+    border: none;
+    border-radius: 4px;
+    background-color: #411a00; /* Green color for action */
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.2s; /* Smooth transition for hover effect */
+}
+
+.borrow-form input[type="submit"]:hover {
+    background-color: #632700; /* Darker green on hover */
+}
+
+.pagination {
+    text-align: center;
+    padding: 20px 0;
+}
+
+.pagination a {
+    margin: 0 5px;
+    text-decoration: none;
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: #ee7c31;
+    color: #333;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.pagination a.active {
+    background-color: #00bcd4;
+    color: white;
+}
+
+.pagination a:hover:not(.active) {
+    background-color: #ddd;
+}
+
+@media (max-width: 768px) {
+    .book-list-container {
+        width: 95%;
+    }
+}

@@ -1,3 +1,15 @@
+<?php
+session_start(); // Start the session
+
+// Check if the user is logged in, if not then redirect to login page
+if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+    header("Location: login.php");
+    exit;
+}
+
+// Logout user
+
+?>
 
 <!DOCTYPE html>
 <html>
@@ -13,23 +25,23 @@
             </div>
             <button class="hamburger">&#9776;</button>
             <ul class="nav-links">
-                <li><a href="login.php">Login</a></li>
-                <li><a href="registration.php">Register</a></li>
-                <li><a href="browse.php">View Books</a></li>
+                <li><a href="logout.php">Logout</a></li>
+                <li><a href="profile.php">Profile</a></li>
+                <li><a href="browseRegistered.php">View Books</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
         <section class="featured" style="height: 670px;"">
-            <h1>Welcome to MyLibrary!</h1>
+        <h1 > Welcome, <br> Mr/Miss with CPR <br> <?php echo htmlspecialchars($_SESSION["username"]); ?>! </h1>
             <p style="width: 570px;" >An online library to <br> Explore a vast collection of books at your fingertips.</p>
             <!-- Additional content can go here -->
         </section>
     </main>
 
     <footer>
-        <p>&copy; 2023 Online Library. All rights reserved.</p>
+        <p>&copy; 2023 MyLibrary. All rights reserved.</p>
     </footer>
 
     <script src=".\Javascript\HumburgerMenu.js">  </script>
