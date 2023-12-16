@@ -45,7 +45,7 @@ $numberOfPages = ceil($totalResults / $resultsPerPage);
         </form>
         <div class="book-list">
             <?php
-            $query = "SELECT isbn, title, author, publish_year, image_url FROM books WHERE title LIKE :searchTerm AND available = 1 LIMIT :limit, :results_per_page";
+            $query = "SELECT isbn, title, author, publish_year,price, image_url FROM books WHERE title LIKE :searchTerm AND available = 1 LIMIT :limit, :results_per_page";
             $stmt = $db->prepare($query);
             $stmt->bindParam(':searchTerm', $searchTerm);
             $stmt->bindParam(':limit', $startingLimitNumber, PDO::PARAM_INT);
@@ -62,6 +62,8 @@ $numberOfPages = ceil($totalResults / $resultsPerPage);
                 echo "<div class='book-title'>" . htmlspecialchars($row['title']) . "</div>";
                 echo "<div class='book-author'>Author: " . htmlspecialchars($row['author']) . "</div>";
                 echo "<div class='book-publish-year'>Published: " . htmlspecialchars($row['publish_year']) . "</div>";
+                echo "<div class='Price'> Price: " . htmlspecialchars($row['price']) . " BHD". "</div>";
+
                 echo "<a href='registration.php' class='borrow-button'>Borrow</a>";
                 echo "</div>";
                 echo "</div>";

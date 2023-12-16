@@ -137,6 +137,21 @@ h1{
 .borrow-form input[type="submit"]:hover {
     background-color: #632700; /* Darker green on hover */
 }
+#successMessage {
+    background-color: #dff0d8; /* Light green background */
+    color: #3c763d;           /* Dark green text */
+    border: 1px solid #d6e9c6; /* Slightly darker green border */
+    border-radius: 5px;        /* Rounded corners */
+    padding: 10px 20px;        /* Padding for some space inside the box */
+    margin: 20px 0;            /* Margin for spacing around the box */
+    text-align: center;        /* Center the text */
+    font-size: 16px;           /* Slightly larger font for visibility */
+    font-weight: bold;         /* Bold text */
+    display: none;             /* Hidden by default */
+    transition: opacity 0.5s ease-in-out; /* Smooth transition for fading out */
+    opacity: 1;                /* Fully visible by default */
+}
+
 
 .pagination {
     text-align: center;

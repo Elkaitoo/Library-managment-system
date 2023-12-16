@@ -8,6 +8,8 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     exit;
 }
 
+
+
 // Pagination settings
 $resultsPerPage = 5;
 $page = isset($_GET['page']) ? $_GET['page'] : 1;
@@ -31,9 +33,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['borrow'])) {
 
     // Convert period to days
     $periodDaysMap = [
-        '6 months' => 180,
-        '1 month' => 30,
-        '1 week' => 7,
+        '1' => 7,
+        '2' => 30,
+        '3' => 180,
+        
+        
     ];
 
     $periodDays = $periodDaysMap[$period] ?? 0;
@@ -62,13 +66,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['borrow'])) {
         $stmtUpdate->execute();
 
         // Redirect to user profile page or display success message
-        header("Location: user.php?borrow_success=1");
+        header("Location: browseRegistered.php?borrow_success=1");
         exit;
     } else {
         // Book is not available
         $error_message = "This book is currently not available for borrowing.";
     }
+
+
 }
+
+
 ?>
 
 <!DOCTYPE html>
@@ -94,14 +102,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['borrow'])) {
         <?php endif; ?>
         <div class="book-list">
             <?php
-            $query = "SELECT isbn, title, author, publish_year, image_url FROM books WHERE title LIKE :searchTerm AND available = 1 LIMIT :limit, :results_per_page";
+            $query = "SELECT isbn, title, author, publish_year,price, image_url FROM books WHERE title LIKE :searchTerm AND available = 1 LIMIT :limit, :results_per_page";
             $stmt = $db->prepare($query);
             $stmt->bindParam(':searchTerm', $searchTerm);
             $stmt->bindParam(':limit', $startingLimitNumber, PDO::PARAM_INT);
             $stmt->bindParam(':results_per_page', $resultsPerPage, PDO::PARAM_INT);
             $stmt->execute();
-
+$c= 0;
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                $c++;
                 echo "<div class='book-item'>";
                 echo "<div class='book-image-container'>";
                 echo "<img src='" . htmlspecialchars($row['image_url']) . "' alt='Book Image' class='book-image'>";
@@ -110,13 +119,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['borrow'])) {
                 echo "<div class='book-title'>" . htmlspecialchars($row['title']) . "</div>";
                 echo "<div class='book-author'>Author: " . htmlspecialchars($row['author']) . "</div>";
                 echo "<div class='book-publish-year'>Published: " . htmlspecialchars($row['publish_year']) . "</div>";
+                echo "<div class='Price'> Price: " . "<span id='price$c'>" . htmlspecialchars($row['price']) . " BHD</span></div>";
                 // Borrow form for each book
                 echo "<form method='POST' class='borrow-form'>";
                 echo "<input type='hidden' name='isbn' value='" . htmlspecialchars($row['isbn']) . "'>";
-                echo "<select name='period'>";
-                echo "<option value='6 months'>6 Months</option>";
-                echo "<option value='1 month'>1 Month</option>";
-                echo "<option value='1 week'>1 Week</option>";
+                echo "<select name='period' onchange='calcprice({$row['price']},this.value, $c)'>";
+                echo "<option value='1' selected>1 week</option>";
+                echo "<option value='2'>1 Month</option>";
+                echo "<option value='3'>6 Months</option>";
                 echo "</select>";
                 echo "<input type='submit' name='borrow' value='Borrow'>";
                 echo "</form>";
@@ -133,6 +143,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['borrow'])) {
             <?php endfor; ?>
         </div>
     </div>
-    <script src="script.js"></script>
+
+    <script src="Javascript/calcprice.js"> </script>
 </body>
 </html>

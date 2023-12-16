@@ -5,7 +5,7 @@
     <title>Online Library</title>
     <link rel="stylesheet" type="text/css" href="./CSS/styles.css">
 </head>
-<body>
+<body>3
     <header>
         <nav>
             <div class="logo">
@@ -21,7 +21,7 @@
     </header>
 
     <main>
-        <section class="featured" style="height: 670px;"">
+        <section class="featured" style="height: 670px;">
             <h1>Welcome to MyLibrary!</h1>
             <p style="width: 570px;" >An online library to <br> Explore a vast collection of books at your fingertips.</p>
             <!-- Additional content can go here -->
