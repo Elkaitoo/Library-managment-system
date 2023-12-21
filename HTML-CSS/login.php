@@ -1,3 +1,4 @@
+
 <?php
 // Include the database connection file
 require_once 'db.php';
@@ -8,28 +9,27 @@ $username = $password = "";
 $username_err = $password_err = $login_err = "";
 
 // Processing form data when form is submitted
-if($_SERVER["REQUEST_METHOD"] == "POST"){
-
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Check if username is empty
-    if(empty(trim($_POST["cpr"]))){
-        $username_err = "Please enter username.";
-    } else{
+    if (empty(trim($_POST["cpr"]))) {
+        $username_err = "Please enter your CPR.";
+    } else {
         $username = trim($_POST["cpr"]);
     }
 
     // Check if password is empty
-    if(empty(trim($_POST["password"]))){
+    if (empty(trim($_POST["password"]))) {
         $password_err = "Please enter your password.";
-    } else{
+    } else {
         $password = trim($_POST["password"]);
     }
 
     // Validate credentials
-    if(empty($username_err) && empty($password_err)){
+    if (empty($username_err) && empty($password_err)) {
         // Prepare a select statement
-        $sql = "SELECT id, cpr, password FROM users WHERE cpr = :cpr";
+        $sql = "SELECT id, cpr, password, is_admin FROM users WHERE cpr = :cpr";
         
-        if($stmt = $db->prepare($sql)){
+        if ($stmt = $db->prepare($sql)) {
             // Bind variables to the prepared statement as parameters
             $stmt->bindParam(":cpr", $param_username, PDO::PARAM_STR);
             
@@ -37,14 +37,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             $param_username = $username;
             
             // Attempt to execute the prepared statement
-            if($stmt->execute()){
+            if ($stmt->execute()) {
                 // Check if username exists, if yes then verify password
-                if($stmt->rowCount() == 1){
-                    if($row = $stmt->fetch()){
+                if ($stmt->rowCount() == 1) {
+                    if ($row = $stmt->fetch()) {
                         $id = $row["id"];
                         $username = $row["cpr"];
                         $hashed_password = $row["password"];
-                        if(password_verify($password, $hashed_password)){
+                        $is_admin = $row["is_admin"];
+                        if (password_verify($password, $hashed_password)) {
                             // Password is correct, so start a new session
                             session_start();
                             
@@ -52,19 +53,24 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             $_SESSION["loggedin"] = true;
                             $_SESSION["id"] = $id;
                             $_SESSION["username"] = $username;
-                            
-                            // Redirect user to welcome page
-                            header("location: user.php");
-                        } else{
+                            $_SESSION["is_admin"] = $is_admin;
+
+                            // Redirect user to the admin or user page based on is_admin flag
+                            if ($is_admin == 1) {
+                                header("location: AdminHome.php");
+                            } else {
+                                header("location: user.php");
+                            }
+                        } else {
                             // Password is not valid, display a generic error message
                             $login_err = "Invalid username or password.";
                         }
                     }
-                } else{
+                } else {
                     // Username doesn't exist, display a generic error message
                     $login_err = "Invalid username or password.";
                 }
-            } else{
+            } else {
                 echo "Oops! Something went wrong. Please try again later.";
             }
 
@@ -77,6 +83,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     unset($db);
 }
 ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

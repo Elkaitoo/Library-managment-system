@@ -2,8 +2,9 @@
     font-family: myFont2;
     src: url('../Fonts/Montserrat-VariableFont_wght.ttf');
 }
+*{    font-family: myFont2;
+}
 body {
-    font-family: myFont2;
     background-color: #f4f4f4;
     margin: 0;
     padding: 0;
@@ -54,6 +55,57 @@ h1{
     margin-bottom: 20px;
 }
 
+h2{
+    text-align: center;
+    margin-bottom: 20px;
+    color: #ffffff;
+    
+}
+
+.add-book-form{
+    padding: 10px;
+    margin-right: 5px;
+    margin: 8px 8px;
+    width: 97%;
+    border: 2px solid #411a00;
+    border-radius: 4px;
+    background-color: #b35c22;
+    box-shadow: 5px 2px 15px rgb(12, 12, 12);
+
+    
+
+
+}
+.add-book-form input[type="text"],
+.add-book-form input[type="number"],
+.add-book-form input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 4px;
+    box-sizing: border-box;
+    border: 2px solid #411a00;
+    background-color: #ee7c31;
+    
+}
+.add-book-form input[type="submit"]{
+
+    display: flex;
+    color: #632700;
+    margin: 8px 8px;
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background-color: #632700;
+    color: white;
+    cursor: pointer;
+    border-radius: 4px;
+}
+.add-book-form input[type="submit"]:hover{
+    background-color:#813400 ;
+}
+
+
 .search-form input[type="text"] {
     padding: 10px;
     margin-right: 5px;
@@ -101,7 +153,7 @@ h1{
     position: relative;
 }
 
-.borrow-button {
+.borrow-button,.delete-book{
     display: block;
     width: 100px;
     padding: 10px;
@@ -113,9 +165,11 @@ h1{
     position: absolute;
     right: 15px;
     bottom: 15px;
+    cursor: pointer;
+
 }
 
-.borrow-button:hover {
+.borrow-button:hover, .delete-book:hover {
     background-color: #632700;
 }
 
@@ -149,3 +203,4 @@ h1{
         width: 95%;
     }
 }
+
