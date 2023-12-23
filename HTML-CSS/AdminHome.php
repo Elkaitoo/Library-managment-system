@@ -2,7 +2,7 @@
 session_start(); // Start the session
 
 // Check if the user is logged in, if not then redirect to login page
-if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || $_SESSION["is_admin"] != 1){
     header("Location: login.php");
     exit;
 }
@@ -26,7 +26,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
             <button class="hamburger">&#9776;</button>
             <ul class="nav-links">
                 <li><a href="logout.php">Logout</a></li>
-                <li><a href="profile.php">Edit Profiles</a></li>
+                <li><a href="EditProfiles.php">Edit Profiles</a></li>
                 <li><a href="EditBooks.php">Edit Books</a></li>
             </ul>
         </nav>

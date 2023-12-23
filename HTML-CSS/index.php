@@ -1,4 +1,16 @@
 
+<?php 
+
+session_start(); // Start the session
+if( $_SESSION["loggedin"] == true){
+    header("Location: user.php");
+    exit;
+}
+if( $_SESSION["loggedin"] == true &&$_SESSION["is_admin"] == 1){
+    header("Location: AdminHome.php");
+    exit;
+}
+?>
 <!DOCTYPE html>
 <html>
 <head>
