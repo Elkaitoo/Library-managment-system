@@ -19,14 +19,11 @@ body {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-h1 {
-    color: #333;
-    text-align: center;
-}
 
 .borrow-records {
     margin-top: 20px;
 }
+
 
 .borrow-record {
     border: 1px solid #ddd;

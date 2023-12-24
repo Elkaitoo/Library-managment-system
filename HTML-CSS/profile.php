@@ -62,7 +62,7 @@ $borrowedBooks = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <body>
     <div class="profile-container book-list-container"  >
         <h1>Welcome, <?= htmlspecialchars($username); ?></h1>
-        <a href="user.php" class="Home-button">Home</a>
+        <a href="user.php" class="home-button">Home</a>
 
         <h2>Borrowed Books</h2>
         <div class="borrowed-books-list book-list book-item ">
@@ -90,8 +90,19 @@ $borrowedBooks = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <form action="profile.php" method="post">
                         <input type="hidden" name="id" value="<?= htmlspecialchars($book["record_id"]); ?>">
                         <input type="hidden" name="isbn" value="<?= htmlspecialchars($book["isbn"]); ?>">
-                        <input type="submit" name="return_book" value="Return Book">
+                        <input type="submit" name="return_book" value="Return Book" class="home-button">
                     </form>
+                    <div class="borrowed-book" data-return-date="<?= htmlspecialchars($book["return_date"]); ?>">
+    <div class="countdown-timer" 
+    style="
+     padding: 10px;
+    margin-top: 10px;
+    border: 1px solid #ffcccc; /* Slightly darker border */
+    border-radius: 4px; /* Rounded corners */
+    text-align: center;
+    font-weight: bold;" 
+    id="timer-<?= $book["record_id"];  ?>"></div>
+</div>
                 </div>
             <?php endforeach; ?>
         </div>

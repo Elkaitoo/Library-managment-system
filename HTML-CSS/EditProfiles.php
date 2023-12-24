@@ -68,16 +68,12 @@ $allBorrows = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <div class="admin-container book-list-container">
         <h1>Admin - Edit User Profiles</h1>
         <a href="AdminHome.php" class="Home-button">Home</a>
-
-        <div class="borrow-records book-list book-item">
-            <?php foreach ($allBorrows as $borrow): ?>
-                <div class="borrow-record">
-                    <p>Record ID: <?= htmlspecialchars($borrow["id"]); ?></p>
-                    <p>Title: <?= htmlspecialchars($borrow["title"]); ?></p>
-                    
-                    <p>Fine: <?= number_format($borrow["fine"], 2); ?> BHD</p>
-
-                <span>
+        <a style="
+          text-align: center;
+    margin-left: 20px;
+    color: #ffffff;
+        
+        ">
                     <?php
                     
                     if(isset($status)){
@@ -86,7 +82,16 @@ $allBorrows = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 
                     
                     ?>
-                </span>
+                </a>
+        <div class="borrow-records book-list book-item">
+            <?php foreach ($allBorrows as $borrow): ?>
+                <div class="borrow-record">
+                    <p>Record ID: <?= htmlspecialchars($borrow["id"]); ?></p>
+                    <p>Title: <?= htmlspecialchars($borrow["title"]); ?></p>
+                    
+                    <p>Fine: <?= number_format($borrow["fine"], 2); ?> BHD</p>
+
+              
                     <!-- Wipe Fees Button -->
                     <form action="" method="post">
                         <input type="hidden" name="record_id" value="<?= htmlspecialchars($borrow["id"]); ?>">

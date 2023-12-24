@@ -58,9 +58,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_book'])) {
             'price' => $price,
             'image_url' => $image_path
         ]);
-
+        $status = " $title has been added successfully!";
+     
         // Redirect to the manager page or display a success message
-        echo "Book added successfully!";
+        
     }
 }
 // Handle the book deletion
@@ -73,7 +74,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete_book'])) {
     $stmt->execute(['isbn' => $isbn]);
 
     // Redirect to manager page or display success message
-    echo "Book deleted successfully!";
+    $status= "Book deleted successfully!";
+    
+
 }
 
 ?>
@@ -97,8 +100,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete_book'])) {
         <!-- ... (Add book form HTML) ... -->
         <div class="add-book-form">
             <h2>Add a New Book</h2>
+            <span > <h3 class="status">
+                    <?php
+                    
+                    if(isset($status)){
+                          echo $status; 
+                    }
+                
+                    
+                    ?> </h3>
+                </span>
             <form action="EditBooks.php" method="POST" enctype="multipart/form-data">
-                 <input type="text" name="isbn" placeholder="Book isbn"  pattern="^(?:\d{9}X|\d{10}|\d{13})$" title="ISBN-10 or ISBN-13 format required" required />
+                 <input type="text" name="isbn" placeholder="Book isbn" pattern="^(?:\d{9}[\dX]|97[89]\d{10,13})$"  title="ISBN-10 or ISBN-13 format required" required />
                 <input type="text" name="title" placeholder="Book Title" required />
                 <input type="text" name="author" placeholder="Author" required />
                 <input type="text" name="publish_year" placeholder="Publish Year" required />
