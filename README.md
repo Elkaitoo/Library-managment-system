@@ -1,5 +1,5 @@
 # Online Library Website
-Important ! (the project may occurs some bugs,unfineshed styles etc..., this is my first web project)
+Important ! (the project may occur some bugs,unfinished styles etc..., this is my first web project)
 ## Description
 
 This project is an online library website that allows users to browse, borrow, and return books. It features a user-friendly interface for both regular users and administrators.
